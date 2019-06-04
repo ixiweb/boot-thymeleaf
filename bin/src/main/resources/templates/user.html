@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Registration Form</title>
+	<th:block th:include="fragments/header"></th:block>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+
+<body>
+
+<th:block th:include="fragments/nav"></th:block>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">NAME</th>
+      <th scope="col">COMPANY</th>
+      <th scope="col">Update</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+   	<tr>
+   	<form th:action="@{'/users/{id}'(id=${id})}" th:method="put">
+   	<div th:object="${user}">
+		<th scope="row"><span th:text="${id}"></span></th>
+		<td><input type="text" name="name" th:field="*{name}" /></td>
+		<td><input type="text" name="company" th:field="*{company}" /></td>
+		<td><button type="submit" id="updateButton">update</button></td>
+	</div>
+	</form>
+	<td>
+	<form th:action="@{'/users/{id}'(id=${id})}" th:method="delete">
+		<input type="hidden" name="id" th:value="${id}"/>
+		<button type="submit" id="deleteButton">delete</button>
+	</form>
+	</td>
+	</tr>
+  </tbody>
+</table>
+<th:block th:include="fragments/footer"></th:block>
+
+</body>
+</html>
